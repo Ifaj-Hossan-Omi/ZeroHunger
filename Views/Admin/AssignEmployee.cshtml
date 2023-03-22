@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ZeroHunger.DB.Employee>
+
+@{
+    ViewBag.Title = "AssignEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AssignEmployee</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.ActionLink("Assign", "Assigned", new { employeeId=item.Id, requestId = ViewBag.requestId })
+        </td>
+    </tr>
+}
+
+</table>
+
+<style>
+    /* custom css */
+    table {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    th {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+</style>

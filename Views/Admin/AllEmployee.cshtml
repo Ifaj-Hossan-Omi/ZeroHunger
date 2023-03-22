@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ZeroHunger.DB.Employee>
+
+@{
+    ViewBag.Title = "AllEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AllEmployee</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateEmployee")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+      
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        
+    </tr>
+}
+
+</table>

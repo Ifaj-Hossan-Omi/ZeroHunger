@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ZeroHunger.DB.Request>
+
+@{
+    ViewBag.Title = "Pending Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Custom CSS for the table */
+    .table {
+        margin: 20px 0;
+        border-collapse: collapse;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        color: #444444;
+        background-color: transparent;
+    }
+
+        .table th {
+            padding: 12px;
+            font-weight: bold;
+/*            background-color: #f2f2f2;*/
+            border-bottom: 2px solid #ddd;
+        }
+
+        .table td {
+            padding: 12px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .table .btn {
+            margin: 0 5px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: #009688;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+            .table .btn:hover {
+                background-color: #00796b;
+            }
+
+    /* Gradient background */
+   
+
+    /* Transparency for container */
+/*    .container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+    }*/
+</style>
+
+<div class="container body-content">
+    <h2>Pending Request</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Employee Name</th>
+                <th>Restaurant Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Employee.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Restaurant.Name)</td>
+                    <td>@Html.ActionLink("Assign Employee", "AssignEmployee", new { requestId = item.Id }, new { @class = "btn" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+
+</div>

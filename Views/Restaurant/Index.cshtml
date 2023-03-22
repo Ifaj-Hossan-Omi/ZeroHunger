@@ -1,0 +1,121 @@
+﻿@model IEnumerable<ZeroHunger.DB.Request>
+
+@{
+    ViewBag.Title = "All Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Request</h2>
+
+<p>
+    @Html.ActionLink("New Request", "CreateRequest", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                Description
+            </th>
+            <th scope="col">
+                Date
+            </th>
+            <th scope="col">
+                Status
+            </th>
+            <th scope="col">
+                Employee Name
+            </th>
+            <th scope="col">
+                Restaurant Name
+            </th>
+            <th scope="col">
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restaurant.Name)
+                </td>
+                <td>
+                    @if (item.Status == "Employee is coming for collect the food")
+                    {
+                        @Html.ActionLink("Pick the food", "Pick", new { id = item.Id }, new { @class = "btn btn-success" })
+                    }
+                    else if (item.Status == "Employee is picked the food")
+                    {
+                        @Html.ActionLink("Delivered to ZeroHunger", "DeliverReq", new { id = item.Id }, new { @class = "btn btn-info" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    /* custom css */
+    table {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    th {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+</style>
+
+<!-- Bootstrap CSS -->
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">*@

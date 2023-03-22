@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ZeroHunger.DB.Request>
+
+@{
+    ViewBag.Title = "All Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>AssignedRequest</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    Employee Name
+                </th>
+                <th>
+                    Restaurant Name
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Restaurant.Name)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
